@@ -4,6 +4,7 @@ services:
 
   postgres:
     image: postgres:10
+    container_name: postgress
     volumes:
       - "./db_data:/var/lib/postgresql/data"
     restart: always
@@ -16,16 +17,17 @@ services:
     depends_on:
       - postgres
     image: metabase/metabase
+    container_name: metabase
     ports:
       - "3000:3000"
     restart: always
     environment:
-      JAVA_TIMEZONE: Europe/Istanbul
+      JAVA_TIMEZONE: Africa/Nairobi
       MB_ENCRYPTION_SECRET_KEY: ${MB}
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
-      MB_DB_USER: metabase_usr
+      MB_DB_USER: metabase
       MB_DB_PASS: ${POSTGRES_PASSWORD}
       MB_DB_HOST: postgres
 
@@ -33,9 +35,10 @@ services:
     depends_on:
       - postgres
     image: dpage/pgadmin4
+    container_name: pgadmin
     ports:
       - "3001:80"
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: mail@example.com
+      PGADMIN_DEFAULT_EMAIL: hello@crafted.co.ke
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
