@@ -10,7 +10,7 @@ services:
     restart: always
     environment:
       POSTGRES_DB: metabase
-      POSTGRES_USER: metabase_usr
+      POSTGRES_USER: metabase
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   metabase:
